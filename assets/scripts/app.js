@@ -7,7 +7,7 @@ const SCISSORS = 'SCISSORS';
 
 
 const getPlayerChoice = function () {
-   const selection = prompt('Rock, Paper or Scissors?', '');
+   const selection = prompt(`${ROCK}, ${PAPER} or ${SCISSORS}?`, '').toUpperCase();
    if (
     selection !== ROCK &&
     selection !== PAPER &&
