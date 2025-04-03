@@ -1,83 +1,83 @@
 /* General body styling */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  display: flex; /* Center content horizontally and vertically */
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Full viewport height */
-  margin: 0; /* Remove default margin */
-}
-
-/* Main container styling */
-.container {
-  background-color: white; /* White background for game area */
-  padding: 20px; /* Inner spacing */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  text-align: center; /* Center text inside */
-}
-
-/* Heading styling */
-h1 {
-  color: #333; /* Dark gray color for title */
-}
-
-/* Scoreboard layout */
-.score-board {
-  display: flex; /* Horizontal layout for scores */
-  justify-content: space-around; /* Even spacing between items */
-  margin: 20px 0; /* Vertical spacing */
-  font-size: 1.2em; /* Slightly larger text */
-}
-
-/* Game buttons container */
-.game-area {
-  margin: 20px 0; /* Vertical spacing */
-}
-
-/* Styling for choice buttons */
-.choice-btn {
-  padding: 10px 20px; /* Vertical and horizontal padding */
-  margin: 0 10px; /* Horizontal spacing between buttons */
-  font-size: 1em; /* Normal text size */
-  background-color: #007bff; /* Blue background */
-  color: white;
-  border: none;
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Hand cursor on hover */
-  transition: transform 0.2s; /* Smooth scaling animation */
-}
-
-/* Hover effect for choice buttons */
-.choice-btn:hover {
-  transform: scale(1.1); /* Slightly enlarge button */
-}
-
-/* Active (click) effect for choice buttons */
-.choice-btn:active {
-  transform: scale(0.95); /* Slightly shrink button */
-}
-
-/* Result message styling */
-.result {
-  margin: 20px 0; /* Vertical spacing */
-  font-size: 1.1em; /* Slightly larger text */
-  color: #555;
-}
-
-/* Start button styling */
-#start-game-btn {
-  padding: 10px 30px; /* Larger padding */
-  font-size: 1em; /* Normal text size */
-  background-color: #28a745;
-  color: white; /* White text */
-  border: none;
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Hand cursor on hover */
-}
-
-/* Hover effect for start button */
-#start-game-btn:hover {
-  background-color: #218838;
-}
+   font-family: Arial, sans-serif;
+   background-color: #f0f0f0;
+   display: flex; /* Center content horizontally and vertically */
+   justify-content: center;
+   align-items: center;
+   height: 100vh; /* Full viewport height */
+   margin: 0; /* Remove default margin */
+ }
+ 
+ /* Main container styling */
+ .container {
+   background-color: white; /* White background for game area */
+   padding: 1.25rem; 
+   border-radius: 0.625rem; 
+   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+   text-align: center; /* Center text inside */
+ }
+ 
+ /* Heading styling */
+ h1 {
+   color: #333; /* Dark gray color for title */
+ }
+ 
+ /* Scoreboard layout */
+ .score-board {
+   display: flex; /* Horizontal layout for scores */
+   justify-content: space-around; /* Even spacing between items */
+   margin: 1.25rem 0; 
+   font-size: 1.2rem;
+ }
+ 
+ /* Game buttons container */
+ .game-area {
+   margin: 1.25rem 0;
+ }
+ 
+ /* Styling for choice buttons */
+ .choice-btn {
+   padding: 0.625rem 1.25rem; 
+   margin: 0 0.625rem; 
+   font-size: 1rem;
+   background-color: #007bff; /* Blue background */
+   color: white;
+   border: none;
+   border-radius: 0.3125rem;
+   cursor: pointer; /* Hand cursor on hover */
+   transition: transform 0.2s; /* Smooth scaling animation */
+ }
+ 
+ /* Hover effect for choice buttons */
+ .choice-btn:hover {
+   transform: scale(1.1); /* Slightly enlarge button */
+ }
+ 
+ /* Active (click) effect for choice buttons */
+ .choice-btn:active {
+   transform: scale(0.95); /* Slightly shrink button */
+ }
+ 
+ /* Result message styling */
+ .result {
+   margin: 1.25rem 0;
+   font-size: 1.1rem;
+   color: #555;
+ }
+ 
+ /* Start button styling */
+ #start-game-btn {
+   padding: 0.625rem 1.875rem; /* 10px 30px -> 0.625rem 1.875rem (30/16 = 1.875) */
+   font-size: 1rem;
+   background-color: #28a745;
+   color: white; 
+   border: none;
+   border-radius: 0.3125rem;
+   cursor: pointer; /* Hand cursor on hover */
+ }
+ 
+ /* Hover effect for start button */
+ #start-game-btn:hover {
+   background-color: #218838;
+ }
