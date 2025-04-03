@@ -3,12 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Rock, Paper, Scissors</title>
   <link rel="stylesheet" href="assets/styles/app.css">
   <script src="assets/scripts/app.js" defer></script>
 </head>
 <body>
-  <button id="start-game-btn">Start Game!</button>
+  <div class="container">
+    <h1>Rock, Paper, Scissors</h1>
+    <div class="score-board">
+      <p>Player: <span id="player-score">0</span></p>
+      <p>Computer: <span id="computer-score">0</span></p>
+    </div>
+    <div class="game-area">
+      <button class="choice-btn" data-choice="ROCK">Stone</button>
+      <button class="choice-btn" data-choice="PAPER">Paper</button>
+      <button class="choice-btn" data-choice="SCISSORS">Scissors</button>
+    </div>
+    <div class="result">
+      <p id="result-message"></p>
+    </div>
+    <button id="start-game-btn">New Game</button>
+  </div>
 </body>
 </html>
