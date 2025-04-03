@@ -1,26 +1,20 @@
+// assets/scripts/app.js
 const startGameBtn = document.getElementById('start-game-btn');
+const resultMessage = document.getElementById('result-message');
+const playerScoreEl = document.getElementById('player-score');
+const computerScoreEl = document.getElementById('computer-score');
+const choiceButtons = document.querySelectorAll('.choice-btn');
 
 const ROCK = 'ROCK';
 const PAPER = 'PAPER';
 const SCISSORS = 'SCISSORS';
-const DEFAULT_USER_CHOICE = ROCK;
 const RESULT_DRAW = 'DRAW';
 const RESULT_PLAYER_WINS = 'PLAYER_WINS';
 const RESULT_COMPUTER_WINS = 'COMPUTER_WINS';
 
 let gameIsRunning = false;
-
-const getPlayerChoice = () => {
-  const selection = prompt(
-    `${ROCK}, ${PAPER} or ${SCISSORS}?`,
-    ''
-  ).toUpperCase();
-  if (selection !== ROCK && selection !== PAPER && selection !== SCISSORS) {
-    alert(`Invalid choice! We chose ${DEFAULT_USER_CHOICE} for you!`);
-    return DEFAULT_USER_CHOICE;
-  }
-  return selection;
-};
+let playerScore = 0;
+let computerScore = 0;
 
 const getComputerChoice = () => {
   const randomValue = Math.random();
@@ -42,35 +36,41 @@ const getWinner = (cChoice, pChoice) =>
     ? RESULT_PLAYER_WINS
     : RESULT_COMPUTER_WINS;
 
-// if (cChoice === pChoice) {
-//   return RESULT_DRAW;
-// } else if (
-//   (cChoice === ROCK && pChoice === PAPER) ||
-//   (cChoice === PAPER && pChoice === SCISSORS) ||
-//   (cChoice === SCISSORS && pChoice === ROCK)
-// ) {
-//   return RESULT_PLAYER_WINS;
-// } else {
-//   return RESULT_COMPUTER_WINS;
-// }
-
-startGameBtn.addEventListener('click', () => {
-  if (gameIsRunning) {
-    return;
-  }
+const playRound = (playerChoice) => {
+  if (gameIsRunning) return;
   gameIsRunning = true;
-  console.log('Game is starting...');
-  const playerChoice = getPlayerChoice();
+
   const computerChoice = getComputerChoice();
   const winner = getWinner(computerChoice, playerChoice);
+
   let message = `You picked ${playerChoice}, computer picked ${computerChoice}, therefore you `;
   if (winner === RESULT_DRAW) {
-    message = message + 'had a draw!';
+    message += 'had a draw!';
   } else if (winner === RESULT_PLAYER_WINS) {
-    message = message + 'won.';
+    message += 'won.';
+    playerScore++;
+    playerScoreEl.textContent = playerScore;
   } else {
-    message = message + 'lost';
+    message += 'lost.';
+    computerScore++;
+    computerScoreEl.textContent = computerScore;
   }
-  alert(message);
+
+  resultMessage.textContent = message;
   gameIsRunning = false;
+};
+
+choiceButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const playerChoice = button.dataset.choice; 
+    playRound(playerChoice);
+  });
+});
+
+startGameBtn.addEventListener('click', () => {
+  playerScore = 0;
+  computerScore = 0;
+  playerScoreEl.textContent = '0';
+  computerScoreEl.textContent = '0';
+  resultMessage.textContent = 'Choose your move!';
 });
