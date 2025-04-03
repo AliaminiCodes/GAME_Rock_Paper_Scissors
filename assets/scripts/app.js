@@ -4,6 +4,8 @@ const resultMessage = document.getElementById('result-message');
 const playerScoreEl = document.getElementById('player-score');
 const computerScoreEl = document.getElementById('computer-score');
 const choiceButtons = document.querySelectorAll('.choice-btn');
+const playerChoiceImg = document.getElementById('player-choice-img');
+const computerChoiceImg = document.getElementById('computer-choice-img');
 
 const ROCK = 'ROCK';
 const PAPER = 'PAPER';
@@ -36,6 +38,13 @@ const getWinner = (cChoice, pChoice) =>
     ? RESULT_PLAYER_WINS
     : RESULT_COMPUTER_WINS;
 
+const updateImages = (playerChoice, computerChoice) => {
+  playerChoiceImg.src = `images/${playerChoice}.png`;
+  playerChoiceImg.alt = `Player chose ${playerChoice}`;
+  computerChoiceImg.src = `images/${computerChoice}.png`;
+  computerChoiceImg.alt = `Computer chose ${computerChoice}`;
+};
+
 const playRound = (playerChoice) => {
   if (gameIsRunning) return;
   gameIsRunning = true;
@@ -57,12 +66,13 @@ const playRound = (playerChoice) => {
   }
 
   resultMessage.textContent = message;
+  updateImages(playerChoice, computerChoice);
   gameIsRunning = false;
 };
 
 choiceButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    const playerChoice = button.dataset.choice; 
+    const playerChoice = button.dataset.choice;
     playRound(playerChoice);
   });
 });
@@ -73,4 +83,6 @@ startGameBtn.addEventListener('click', () => {
   playerScoreEl.textContent = '0';
   computerScoreEl.textContent = '0';
   resultMessage.textContent = 'Choose your move!';
+  playerChoiceImg.src = '';
+  computerChoiceImg.src = '';
 });
