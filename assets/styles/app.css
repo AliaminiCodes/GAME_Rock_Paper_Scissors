@@ -1,95 +1,134 @@
 /* General body styling */
 body {
-   font-family: Arial, sans-serif;
-   background-color: #f0f0f0;
-   display: flex; /* Center content horizontally and vertically */
-   justify-content: center;
-   align-items: center;
-   height: 100vh; /* Full viewport height */
-   margin: 0; /* Remove default margin */
- }
- 
- /* Main container styling */
- .container {
-   background-color: white; /* White background for game area */
-   padding: 1.25rem; 
-   border-radius: 0.625rem; 
-   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-   text-align: center; /* Center text inside */
- }
- 
- /* Heading styling */
- h1 {
-   color: #333; /* Dark gray color for title */
- }
- 
- /* Scoreboard layout */
- .score-board {
-   display: flex; /* Horizontal layout for scores */
-   justify-content: space-around; /* Even spacing between items */
-   margin: 1.25rem 0; 
-   font-size: 1.2rem;
- }
- 
- /* Game buttons container */
- .game-area {
-   margin: 1.25rem 0;
- }
- 
- /* Styling for choice buttons */
- .choice-btn {
-   padding: 0.625rem 1.25rem; 
-   margin: 0 0.625rem; 
-   font-size: 1rem;
-   background-color: #007bff; /* Blue background */
-   color: white;
-   border: none;
-   border-radius: 0.3125rem;
-   cursor: pointer; /* Hand cursor on hover */
-   transition: transform 0.2s; /* Smooth scaling animation */
- }
- 
- /* Hover effect for choice buttons */
- .choice-btn:hover {
-   transform: scale(1.1); /* Slightly enlarge button */
- }
- 
- /* Active (click) effect for choice buttons */
- .choice-btn:active {
-   transform: scale(0.95); /* Slightly shrink button */
- }
- 
- /* Result message styling */
- .result {
-   margin: 1.25rem 0;
-   font-size: 1.1rem;
-   color: #555;
- }
- 
- /* Start button styling */
- #start-game-btn {
-   padding: 0.625rem 1.875rem; /* 10px 30px -> 0.625rem 1.875rem (30/16 = 1.875) */
-   font-size: 1rem;
-   background-color: #28a745;
-   color: white; 
-   border: none;
-   border-radius: 0.3125rem;
-   cursor: pointer; /* Hand cursor on hover */
- }
- 
- /* Hover effect for start button */
- #start-game-btn:hover {
-   background-color: #218838;
- }
- 
- /* Responsive design for mobile */
- @media (max-width: 480px) {
-   .game-area {
-     display: flex;
-     flex-direction: column; /* Stack buttons vertically */
-     gap: 0.625rem; /* Space between buttons */
-   }
-   .choice-btn {
-     margin: 0; /* Remove horizontal margin */
-   }
- }
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  display: flex; /* Center content horizontally and vertically */
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  margin: 0; /* Remove default margin */
+}
+
+/* Main container styling */
+.container {
+  background-color: white; /* White background for game area */
+  padding: 1.25rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  text-align: center; /* Center text inside */
+}
+
+/* Heading styling */
+h1 {
+  color: #333; /* Dark gray color for title */
+}
+
+/* Scoreboard layout */
+.score-board {
+  display: flex; /* Horizontal layout for scores */
+  justify-content: space-around; /* Even spacing between items */
+  margin: 1.25rem 0;
+  font-size: 1.2rem;
+}
+
+/* Game buttons container */
+.game-area {
+  margin: 1.25rem 0;
+}
+
+/* Styling for choice buttons */
+.choice-btn {
+  padding: 0.625rem 1.25rem;
+  margin: 0 0.625rem;
+  font-size: 1rem;
+  background-color: #007bff; /* Blue background */
+  color: white;
+  border: none;
+  border-radius: 0.3125rem;
+  cursor: pointer; /* Hand cursor on hover */
+  transition: transform 0.2s; /* Smooth scaling animation */
+}
+
+/* Hover effect for choice buttons */
+.choice-btn:hover {
+  transform: scale(1.1); /* Slightly enlarge button */
+}
+
+/* Active (click) effect for choice buttons */
+.choice-btn:active {
+  transform: scale(0.95); /* Slightly shrink button */
+}
+
+/* Result message styling */
+.result {
+  margin: 1.25rem 0;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Visual result styling */
+.visual-result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.25rem 0;
+}
+
+.player-choice,
+.computer-choice {
+  width: 9rem;
+  height: 9rem;
+}
+
+.player-choice img,
+.computer-choice img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.vs img {
+  width: 6rem;
+  height: 6rem;
+}
+
+/* Start button styling */
+#start-game-btn {
+  padding: 0.625rem 1.875rem;
+  font-size: 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 0.3125rem;
+  cursor: pointer; /* Hand cursor on hover */
+}
+
+/* Hover effect for start button */
+#start-game-btn:hover {
+  background-color: #218838;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 480px) {
+  .game-area {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 0.625rem; /* Space between buttons */
+  }
+  .choice-btn {
+    margin: 0; /* Remove horizontal margin */
+  }
+  .visual-result {
+    flex-direction: column; /* Stack images vertically on mobile */
+    gap: 0.625rem;
+  }
+  .player-choice,
+  .computer-choice {
+    width: 6rem; /* Smaller size for mobile */
+    height: 6rem;
+  }
+  .vs img {
+    width: 4rem;
+    height: 4rem;
+  }
+}
