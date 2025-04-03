@@ -81,3 +81,15 @@ body {
  #start-game-btn:hover {
    background-color: #218838;
  }
+ 
+ /* Responsive design for mobile */
+ @media (max-width: 480px) {
+   .game-area {
+     display: flex;
+     flex-direction: column; /* Stack buttons vertically */
+     gap: 0.625rem; /* Space between buttons */
+   }
+   .choice-btn {
+     margin: 0; /* Remove horizontal margin */
+   }
+ }
