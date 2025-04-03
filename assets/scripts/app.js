@@ -15,6 +15,15 @@ const RESULT_DRAW = 'DRAW';
 const RESULT_PLAYER_WINS = 'PLAYER_WINS';
 const RESULT_COMPUTER_WINS = 'COMPUTER_WINS';
 
+// Sound effects
+const rockSound = new Audio('Audio/Rock.mp3'); // Sound for choosing Rock
+const paperSound = new Audio('Audio/Paper.mp3'); // Sound for choosing Paper
+const scissorsSound = new Audio('Audio/Scissors.mp3'); // Sound for choosing Scissors
+const winSound = new Audio('Audio/win.mp3'); // Sound for winning
+const loseSound = new Audio('Audio/LoseSound.mp3'); // Sound for losing
+const drawSound = new Audio('Audio/DrawSound.mp3'); // Sound for a draw
+const resetSound = new Audio('Audio/ResetSound.mp3'); // Sound for resetting
+
 // Game state
 let gameIsRunning = false; // Prevents multiple rounds at once
 let playerScore = 0; // Tracks player score
@@ -46,24 +55,36 @@ const updateImages = (playerChoice, computerChoice) => {
   computerChoiceImg.alt = `Computer chose ${computerChoice}`;
 };
 
+// Plays sound based on player's choice
+const playChoiceSound = (choice) => {
+  if (choice === ROCK) rockSound.play();
+  else if (choice === PAPER) paperSound.play();
+  else if (choice === SCISSORS) scissorsSound.play();
+};
+
 // Plays a single round of the game
 const playRound = (playerChoice) => {
   if (gameIsRunning) return; // Exit if game is already running
   gameIsRunning = true;
 
+  playChoiceSound(playerChoice); // Play sound for player's choice
   const computerChoice = getComputerChoice();
   const winner = getWinner(computerChoice, playerChoice);
 
   let message = `You picked ${playerChoice}, computer picked ${computerChoice}, therefore you `;
-  if (winner === RESULT_DRAW) message += 'had a draw!';
-  else if (winner === RESULT_PLAYER_WINS) {
+  if (winner === RESULT_DRAW) {
+    message += 'had a draw!';
+    drawSound.play(); // Play draw sound
+  } else if (winner === RESULT_PLAYER_WINS) {
     message += 'won.';
     playerScore++;
     playerScoreEl.textContent = playerScore;
+    winSound.play(); // Play win sound
   } else {
     message += 'lost.';
     computerScore++;
     computerScoreEl.textContent = computerScore;
+    loseSound.play(); // Play lose sound
   }
 
   resultMessage.textContent = message; // Show result text
@@ -88,4 +109,5 @@ startGameBtn.addEventListener('click', () => {
   resultMessage.textContent = 'Choose your move!';
   playerChoiceImg.src = ''; // Clear player image
   computerChoiceImg.src = ''; // Clear computer image
+  resetSound.play(); // Play reset sound
 });
