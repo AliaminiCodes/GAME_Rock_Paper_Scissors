@@ -62,7 +62,7 @@ const playChoiceSound = (choice) => {
   else if (choice === SCISSORS) scissorsSound.play();
 };
 
-// Plays a single round of the game
+// Plays a single round of the game with delay for result sound
 const playRound = (playerChoice) => {
   if (gameIsRunning) return; // Exit if game is already running
   gameIsRunning = true;
@@ -72,24 +72,30 @@ const playRound = (playerChoice) => {
   const winner = getWinner(computerChoice, playerChoice);
 
   let message = `You picked ${playerChoice}, computer picked ${computerChoice}, therefore you `;
-  if (winner === RESULT_DRAW) {
-    message += 'had a draw!';
-    drawSound.play(); // Play draw sound
-  } else if (winner === RESULT_PLAYER_WINS) {
-    message += 'won.';
-    playerScore++;
-    playerScoreEl.textContent = playerScore;
-    winSound.play(); // Play win sound
-  } else {
-    message += 'lost.';
-    computerScore++;
-    computerScoreEl.textContent = computerScore;
-    loseSound.play(); // Play lose sound
-  }
+  
+  // Update images immediately
+  updateImages(playerChoice, computerChoice);
+  resultMessage.textContent = message; // Show partial message
 
-  resultMessage.textContent = message; // Show result text
-  updateImages(playerChoice, computerChoice); // Update images
-  gameIsRunning = false;
+  // Delay result sound and final message by 1 second (1000ms)
+  setTimeout(() => {
+    if (winner === RESULT_DRAW) {
+      message += 'had a draw!';
+      drawSound.play(); // Play draw sound
+    } else if (winner === RESULT_PLAYER_WINS) {
+      message += 'won.';
+      playerScore++;
+      playerScoreEl.textContent = playerScore;
+      winSound.play(); // Play win sound
+    } else {
+      message += 'lost.';
+      computerScore++;
+      computerScoreEl.textContent = computerScore;
+      loseSound.play(); // Play lose sound
+    }
+    resultMessage.textContent = message; // Update full message
+    gameIsRunning = false;
+  }, 1000); // 1-second delay
 };
 
 // Add click listeners to choice buttons
