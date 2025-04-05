@@ -64,9 +64,9 @@ const getWinner = (cChoice, pChoice) =>
 
 // Updates choice images in the visual result
 const updateImages = (playerChoice, computerChoice) => {
-  playerChoiceImg.src = `images/${playerChoice}.png`;
+  playerChoiceImg.src = `Gif/${playerChoice}.gif`;
   playerChoiceImg.alt = `Player chose ${playerChoice}`;
-  computerChoiceImg.src = `images/${computerChoice}.png`;
+  computerChoiceImg.src = `Gif/${computerChoice}.gif`;
   computerChoiceImg.alt = `Computer chose ${computerChoice}`;
 };
 
