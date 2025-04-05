@@ -12,6 +12,29 @@ body {
   margin: 0; /* Remove default margin */
 }
 
+/* Start screen styling */
+.start-screen {
+  position: absolute; /* Center the gif */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1; /* Visible by default */
+  transition: opacity 0.5s ease; /* Smooth fade transition */
+}
+
+/* Hide start screen when clicked */
+.start-screen.hidden {
+  opacity: 0; /* Fade out */
+  pointer-events: none; /* Prevent interaction after fade */
+}
+
+/* Gif styling */
+#start-gif {
+  cursor: pointer; /* Hand cursor on hover */
+  width: 200px; /* Adjust size as needed */
+  height: auto;
+}
+
 /* Main container styling */
 .container {
   background-color: white; /* White background for game area */
@@ -19,6 +42,13 @@ body {
   border-radius: 0.625rem;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
   text-align: center; /* Center text inside */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.5s ease; /* Smooth fade transition */
+}
+
+/* Show container when active */
+.container.active {
+  opacity: 1; /* Fade in */
 }
 
 /* Heading styling */
