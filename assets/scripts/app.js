@@ -55,11 +55,42 @@ const updateImages = (playerChoice, computerChoice) => {
   computerChoiceImg.alt = `Computer chose ${computerChoice}`;
 };
 
+// Plays sound with fade-in effect
+const playSoundWithFade = (sound) => {
+  sound.volume = 0; // Start at 0 volume
+  sound.play(); // Start playing
+  let fadeIn = setInterval(() => {
+    if (sound.volume < 0.9) sound.volume += 0.1; // Gradually increase volume
+    else clearInterval(fadeIn); // Stop when near full volume
+  }, 50); // Increase every 50ms
+};
+
+// Plays sound with fade-in and fade-out for result sounds
+const playResultSound = (sound) => {
+  sound.volume = 0;
+  sound.play();
+  let fadeIn = setInterval(() => {
+    if (sound.volume < 0.9) sound.volume += 0.1;
+    else clearInterval(fadeIn);
+  }, 50);
+  setTimeout(() => {
+    let fadeOut = setInterval(() => {
+      if (sound.volume > 0.1) sound.volume -= 0.1;
+      else {
+        sound.volume = 0;
+        sound.pause();
+        sound.currentTime = 0;
+        clearInterval(fadeOut);
+      }
+    }, 50);
+  }, 2000); // Adjust this based on sound duration
+};
+
 // Plays sound based on player's choice
 const playChoiceSound = (choice) => {
-  if (choice === ROCK) rockSound.play();
-  else if (choice === PAPER) paperSound.play();
-  else if (choice === SCISSORS) scissorsSound.play();
+  if (choice === ROCK) playSoundWithFade(rockSound);
+  else if (choice === PAPER) playSoundWithFade(paperSound);
+  else if (choice === SCISSORS) playSoundWithFade(scissorsSound);
 };
 
 // Plays a single round of the game with delay for result sound
@@ -67,12 +98,12 @@ const playRound = (playerChoice) => {
   if (gameIsRunning) return; // Exit if game is already running
   gameIsRunning = true;
 
-  playChoiceSound(playerChoice); // Play sound for player's choice
+  playChoiceSound(playerChoice); // Play sound for player's choice with fade-in
   const computerChoice = getComputerChoice();
   const winner = getWinner(computerChoice, playerChoice);
 
   let message = `You picked ${playerChoice}, computer picked ${computerChoice}, therefore you `;
-  
+
   // Update images immediately
   updateImages(playerChoice, computerChoice);
   resultMessage.textContent = message; // Show partial message
@@ -81,17 +112,17 @@ const playRound = (playerChoice) => {
   setTimeout(() => {
     if (winner === RESULT_DRAW) {
       message += 'had a draw!';
-      drawSound.play(); // Play draw sound
+      playResultSound(drawSound); // Play draw sound with fade-in and fade-out
     } else if (winner === RESULT_PLAYER_WINS) {
       message += 'won.';
       playerScore++;
       playerScoreEl.textContent = playerScore;
-      winSound.play(); // Play win sound
+      playResultSound(winSound); // Play win sound with fade-in and fade-out
     } else {
       message += 'lost.';
       computerScore++;
       computerScoreEl.textContent = computerScore;
-      loseSound.play(); // Play lose sound
+      playResultSound(loseSound); // Play lose sound with fade-in and fade-out
     }
     resultMessage.textContent = message; // Update full message
     gameIsRunning = false;
@@ -115,5 +146,5 @@ startGameBtn.addEventListener('click', () => {
   resultMessage.textContent = 'Choose your move!';
   playerChoiceImg.src = ''; // Clear player image
   computerChoiceImg.src = ''; // Clear computer image
-  resetSound.play(); // Play reset sound
+  playSoundWithFade(resetSound); // Play reset sound with fade-in
 });
