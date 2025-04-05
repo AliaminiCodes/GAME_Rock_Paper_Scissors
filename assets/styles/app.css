@@ -1,7 +1,10 @@
 /* General body styling */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-image: url('../../images/background.png'); /* Set background image */
+  background-size: cover; /* Cover the entire background */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating */
   display: flex; /* Center content horizontally and vertically */
   justify-content: center;
   align-items: center;
