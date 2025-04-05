@@ -73,17 +73,27 @@ const playResultSound = (sound) => {
     if (sound.volume < 0.9) sound.volume += 0.1;
     else clearInterval(fadeIn);
   }, 50);
-  setTimeout(() => {
-    let fadeOut = setInterval(() => {
-      if (sound.volume > 0.1) sound.volume -= 0.1;
-      else {
-        sound.volume = 0;
-        sound.pause();
-        sound.currentTime = 0;
-        clearInterval(fadeOut);
-      }
-    }, 50);
-  }, 2000); // Adjust this based on sound duration
+
+  // Use sound duration dynamically for fade-out timing
+  sound.addEventListener(
+    'loadedmetadata',
+    () => {
+      const duration = sound.duration * 1000; // Convert to milliseconds
+      const fadeOutStart = Math.max(duration - 500, 500); // Start fade-out 500ms before end, min 500ms
+      setTimeout(() => {
+        let fadeOut = setInterval(() => {
+          if (sound.volume > 0.1) sound.volume -= 0.1;
+          else {
+            sound.volume = 0;
+            sound.pause();
+            sound.currentTime = 0;
+            clearInterval(fadeOut);
+          }
+        }, 50);
+      }, fadeOutStart);
+    },
+    { once: true }
+  ); // Run only once per sound
 };
 
 // Plays sound based on player's choice
