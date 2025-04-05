@@ -6,6 +6,9 @@ const computerScoreEl = document.getElementById('computer-score'); // Computer s
 const choiceButtons = document.querySelectorAll('.choice-btn'); // Choice buttons (Rock, Paper, Scissors)
 const playerChoiceImg = document.getElementById('player-choice-img'); // Player choice image
 const computerChoiceImg = document.getElementById('computer-choice-img'); // Computer choice image
+const startGif = document.getElementById('start-gif'); // Start gif element
+const startScreen = document.querySelector('.start-screen'); // Start screen div
+const container = document.querySelector('.container'); // Main container
 
 // Game constants
 const ROCK = 'ROCK';
@@ -22,12 +25,24 @@ const scissorsSound = new Audio('Audio/Scissors.mp3'); // Sound for choosing Sci
 const winSound = new Audio('Audio/win.mp3'); // Sound for winning
 const loseSound = new Audio('Audio/LoseSound.mp3'); // Sound for losing
 const drawSound = new Audio('Audio/DrawSound.mp3'); // Sound for a draw
-const resetSound = new Audio('Audio/ResetSound.mp3'); // Sound for resetting
+const resetSound = new Audio('Audio/ResetSound.mp3'); // Sound for resetting and start
 
 // Game state
 let gameIsRunning = false; // Prevents multiple rounds at once
 let playerScore = 0; // Tracks player score
 let computerScore = 0; // Tracks computer score
+
+// Start game by clicking gif
+startGif.addEventListener('click', () => {
+  playSoundWithFade(resetSound); // Play reset sound on gif click
+  startScreen.classList.add('hidden'); // Fade out start screen
+  setTimeout(() => {
+    container.style.display = 'block'; // Make container visible first
+    setTimeout(() => {
+      container.classList.add('active'); // Then fade it in
+    }, 10); // Small delay to ensure transition triggers
+  }, 500); // Delay to let gif fade out first
+});
 
 // Randomly selects computer's choice
 const getComputerChoice = () => {
