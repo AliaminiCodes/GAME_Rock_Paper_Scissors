@@ -58,7 +58,12 @@ body {
 
 /* Main container styling */
 .container {
-  background-color: rgba(255, 255, 255, 0.8); /* White background for game area */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* White background for game area */
   padding: 1.25rem;
   border-radius: 0.625rem;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
