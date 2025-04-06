@@ -1,7 +1,7 @@
 /* General body styling */
 body {
   font-family: Arial, sans-serif;
-  background-image: url('../../images/background.png'); /* Set background image */
+  background-image: url('../../Images/background.png'); /* Set background image */
   background-size: cover; /* Cover the entire background */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent repeating */
