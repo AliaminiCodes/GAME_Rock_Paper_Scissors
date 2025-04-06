@@ -20,6 +20,9 @@ body {
   transform: translate(-50%, -50%);
   opacity: 1; /* Visible by default */
   transition: opacity 0.5s ease; /* Smooth fade transition */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items vertically */
 }
 
 /* Hide start screen when clicked */
@@ -33,6 +36,24 @@ body {
   cursor: pointer; /* Hand cursor on hover */
   width: 200px; /* Adjust size as needed */
   height: auto;
+}
+
+/* Fallback button styling */
+#start-fallback {
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  display: none; /* Hidden by default */
+}
+
+/* Hover effect for fallback button */
+#start-fallback:hover {
+  background-color: #0056b3;
 }
 
 /* Main container styling */
@@ -143,6 +164,19 @@ h1 {
 
 /* Responsive design for mobile */
 @media (max-width: 480px) {
+  .start-screen {
+    gap: 0.625rem; /* Add spacing between gif and fallback button */
+  }
+
+  #start-gif {
+    width: 150px; /* Slightly smaller for mobile */
+  }
+
+  #start-fallback {
+    padding: 0.5rem 1rem; /* Slightly smaller padding */
+    font-size: 0.9rem; /* Smaller text for mobile */
+  }
+
   .game-area {
     display: flex;
     flex-direction: column; /* Stack buttons vertically */
