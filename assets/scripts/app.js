@@ -66,8 +66,15 @@ const getWinner = (cChoice, pChoice) =>
 const updateImages = (playerChoice, computerChoice) => {
   playerChoiceImg.src = `Gif/${playerChoice}.gif`;
   playerChoiceImg.alt = `Player chose ${playerChoice}`;
+  playerChoiceImg.onerror = () => {
+    playerChoiceImg.src = `Images/${playerChoice}.png`; // Fallback to PNG if GIF fails
+  };
+
   computerChoiceImg.src = `Gif/${computerChoice}.gif`;
   computerChoiceImg.alt = `Computer chose ${computerChoice}`;
+  computerChoiceImg.onerror = () => {
+    computerChoiceImg.src = `Images/${computerChoice}.png`; // Fallback to PNG if GIF fails
+  };
 };
 
 // Plays sound with fade-in effect
