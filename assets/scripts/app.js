@@ -7,6 +7,7 @@ const choiceButtons = document.querySelectorAll('.choice-btn'); // Choice button
 const playerChoiceImg = document.getElementById('player-choice-img'); // Player choice image
 const computerChoiceImg = document.getElementById('computer-choice-img'); // Computer choice image
 const startGif = document.getElementById('start-gif'); // Start gif element
+const startFallback = document.getElementById('start-fallback'); // Fallback button
 const startScreen = document.querySelector('.start-screen'); // Start screen div
 const container = document.querySelector('.container'); // Main container
 
@@ -32,8 +33,8 @@ let gameIsRunning = false; // Prevents multiple rounds at once
 let playerScore = 0; // Tracks player score
 let computerScore = 0; // Tracks computer score
 
-// Start game by clicking gif
-startGif.addEventListener('click', () => {
+// Function to start the game
+const startGame = () => {
   playSoundWithFade(resetSound); // Play reset sound on gif click
   startScreen.classList.add('hidden'); // Fade out start screen
   setTimeout(() => {
@@ -42,7 +43,16 @@ startGif.addEventListener('click', () => {
       container.classList.add('active'); // Then fade it in
     }, 10); // Small delay to ensure transition triggers
   }, 500); // Delay to let gif fade out first
-});
+};
+
+// Start game by clicking gif
+startGif.addEventListener('click', startGame);
+
+// Fallback button if GIF fails to load
+startGif.onerror = () => {
+  startFallback.style.display = 'block'; // Show fallback button if GIF fails
+};
+startFallback.addEventListener('click', startGame);
 
 // Randomly selects computer's choice
 const getComputerChoice = () => {
