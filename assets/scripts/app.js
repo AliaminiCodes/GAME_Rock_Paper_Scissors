@@ -74,17 +74,29 @@ const getWinner = (cChoice, pChoice) =>
 
 // Updates choice images in the visual result
 const updateImages = (playerChoice, computerChoice) => {
-  playerChoiceImg.src = `Gif/${playerChoice}.gif`;
-  playerChoiceImg.alt = `Player chose ${playerChoice}`;
-  playerChoiceImg.onerror = () => {
-    playerChoiceImg.src = `Images/${playerChoice}.png`; // Fallback to PNG if GIF fails
-  };
+  if (playerChoice) {
+    playerChoiceImg.src = `Gif/${playerChoice}.gif`;
+    playerChoiceImg.alt = `Player chose ${playerChoice}`;
+    playerChoiceImg.onerror = () => {
+      playerChoiceImg.src = `Images/${playerChoice}.png`; // Fallback to PNG if GIF fails
+    };
+  } else {
+    playerChoiceImg.src = ''; // Clear image
+    playerChoiceImg.alt = 'Player choice';
+    playerChoiceImg.onerror = null; // Reset onerror
+  }
 
-  computerChoiceImg.src = `Gif/${computerChoice}.gif`;
-  computerChoiceImg.alt = `Computer chose ${computerChoice}`;
-  computerChoiceImg.onerror = () => {
-    computerChoiceImg.src = `Images/${computerChoice}.png`; // Fallback to PNG if GIF fails
-  };
+  if (computerChoice) {
+    computerChoiceImg.src = `Gif/${computerChoice}.gif`;
+    computerChoiceImg.alt = `Computer chose ${computerChoice}`;
+    computerChoiceImg.onerror = () => {
+      computerChoiceImg.src = `Images/${computerChoice}.png`; // Fallback to PNG if GIF fails
+    };
+  } else {
+    computerChoiceImg.src = ''; // Clear image
+    computerChoiceImg.alt = 'Computer choice';
+    computerChoiceImg.onerror = null; // Reset onerror
+  }
 };
 
 // Plays sound with fade-in effect
@@ -186,7 +198,6 @@ startGameBtn.addEventListener('click', () => {
   playerScoreEl.textContent = '0';
   computerScoreEl.textContent = '0';
   resultMessage.textContent = 'Choose your move!';
-  playerChoiceImg.src = ''; // Clear player image
-  computerChoiceImg.src = ''; // Clear computer image
+  updateImages(null, null); // Reset images to empty state
   playSoundWithFade(resetSound); // Play reset sound with fade-in
 });
