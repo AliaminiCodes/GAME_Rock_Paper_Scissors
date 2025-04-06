@@ -93,7 +93,7 @@ const playResultSound = (sound) => {
   sound.addEventListener(
     'loadedmetadata',
     () => {
-      const duration = sound.duration * 1000; // Convert to milliseconds
+      const duration = (sound.duration || 1) * 1000; // Default to 2s if duration unavailable
       const fadeOutStart = Math.max(duration - 500, 500); // Start fade-out 500ms before end, min 500ms
       setTimeout(() => {
         let fadeOut = setInterval(() => {
